@@ -1,0 +1,89 @@
+
+:root {
+
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.4;
+    font-weight: 400;
+
+    /* color-scheme: light dark; */
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+
+}
+
+body {
+
+    background-color: #faf9f6;
+    color: #15222e;
+
+    display: flex;
+
+    justify-content: center;
+
+}
+
+main {
+
+    width: min(100% - 3rem, 1280px);
+
+}
+
+.sudokuWrapper {
+
+    height: 600px;
+    width: 600px;
+
+    margin: 2rem auto;
+
+    /* background-color: aqua; */
+
+}
+
+.sudokuGrid {
+
+    height: 100%;
+    aspect-ratio: 1;
+
+    display: grid;
+
+    grid-template-columns: repeat(9, 1fr);
+
+    border: 1px black solid;
+
+}
+
+.sudokuField {
+
+    border: 1px black solid;
+
+}
+
+.sudokuField:hover {
+
+    background-color: gray;
+
+}
+
+.numberPicker {
+
+    display: flex;
+
+    gap: 2rem;
+    justify-content: center;
+
+}
+
+.numberPicker button {
+
+    height: 3rem;
+    aspect-ratio: 1;
+
+    padding: 0;
+
+    font-size: 1.5em;
+
+}
