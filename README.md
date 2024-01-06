@@ -1,1 +1,3 @@
 # bugi-sudoku
+
+by bugi
