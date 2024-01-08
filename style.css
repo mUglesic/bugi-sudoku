@@ -58,13 +58,46 @@ main {
 
 .sudokuField {
 
-    border: 1px black solid;
+    position: relative;
 
+    font-size: 2em;
+    font-weight: 300;
+
+    border-right: 1px black solid;
+    border-bottom: 1px black solid;
+
+}
+
+.sudokuFieldVerticalBorder {
+    border-left: 1px black solid;
+}
+
+.sudokuFieldHorizontalBorder {
+    border-top: 1px black solid;
 }
 
 .sudokuField:hover {
 
-    background-color: gray;
+    background-color: lightgray;
+
+}
+
+.sudokuField span {
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+
+    cursor: default;
+    user-select: none;
+
+}
+
+.fixedField {
+
+    font-weight: 500;
 
 }
 
@@ -77,7 +110,7 @@ main {
 
 }
 
-.numberPicker button {
+.numberButton {
 
     height: 3rem;
     aspect-ratio: 1;
@@ -85,5 +118,12 @@ main {
     padding: 0;
 
     font-size: 1.5em;
+
+}
+
+.numberButtonSelected {
+
+    border: 2px red solid;
+    border-radius: 5px;
 
 }
