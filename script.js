@@ -31,6 +31,7 @@ for (let i = 0; i < sudoku.size; i++) {
         field.addEventListener("click", () => {
             sudoku.insertNumber(currentSelection, i, j);
             fieldValue.innerHTML = sudoku.grid[i][j];
+            fieldValue.style = `color: ${sudoku.solvedGrid[i][j] == sudoku.grid[i][j] ? "black" : "red"}`;
         });
 
     }
@@ -43,7 +44,7 @@ function selectNum(n) {
 
 document.addEventListener("keydown", (e) => {
 
-    if (e.key === "Backspace") {
+    if (e.key === "Backspace" || e.key === " ") {
         BUTTONS[BUTTONS.length - 1].click();
     }
     else if (["1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(e.key)) {

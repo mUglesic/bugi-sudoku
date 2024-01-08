@@ -1,6 +1,13 @@
 
 :root {
 
+    --bg-color: #faf9f6;
+    --text-color: #15222e;
+
+}
+
+:root {
+
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.4;
     font-weight: 400;
@@ -17,8 +24,8 @@
 
 body {
 
-    background-color: #faf9f6;
-    color: #15222e;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 
     display: flex;
 
@@ -34,8 +41,8 @@ main {
 
 .sudokuWrapper {
 
-    height: 600px;
-    width: 600px;
+    height: 46rem;
+    aspect-ratio: 1;
 
     margin: 2rem auto;
 
@@ -54,14 +61,18 @@ main {
 
     border: 1px black solid;
 
+    filter: drop-shadow(2px 2px 2px black);
+
 }
 
 .sudokuField {
 
     position: relative;
 
-    font-size: 2em;
+    font-size: 3em;
     font-weight: 300;
+
+    background-color: var(--bg-color);
 
     border-right: 1px black solid;
     border-bottom: 1px black solid;
@@ -78,7 +89,7 @@ main {
 
 .sudokuField:hover {
 
-    background-color: lightgray;
+    filter: brightness(0.9);
 
 }
 
@@ -112,18 +123,35 @@ main {
 
 .numberButton {
 
-    height: 3rem;
+    height: 4.5rem;
     aspect-ratio: 1;
 
     padding: 0;
 
-    font-size: 1.5em;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    font-size: 2.75em;
+
+    border: 2px var(--text-color) solid;
+    border-radius: 10px;
+
+    filter: drop-shadow(3px 3px 2px black);
+
+    transition: background-color 100ms ease, scale 100ms ease-in-out, border 150ms linear;
+
+}
+
+.numberButton:hover {
+
+    background-color: #27415a;
+    scale: 1.1;
 
 }
 
 .numberButtonSelected {
 
-    border: 2px red solid;
-    border-radius: 5px;
+    border: 5px #c01a1a solid;
+
+    scale: 1.1;
 
 }

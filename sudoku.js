@@ -2,9 +2,9 @@
 const NUMS = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 const DIFF = {
-    EASY: 3,
-    MEDIUM: 8,
-    HARD: 10
+    EASY: {minRemoved: 40, maxRemoved: 45},
+    MEDIUM: {minRemoved: 46, maxRemoved: 52},
+    HARD: {minRemoved: 53, maxRemoved: 57}
 }
 
 class Sudoku {
@@ -23,7 +23,7 @@ class Sudoku {
 
         this.solvedGrid = this.copyGrid();
 
-        this.removeNums(DIFF.MEDIUM);
+        this.removeNums(DIFF.HARD);
 
         this.fixedNums = this.createFixed();
 
@@ -188,16 +188,33 @@ class Sudoku {
 
     }
 
-    removeNums(attempts) {
+    removeNums(difficulty) {
 
-        while (attempts > 0) {
+        let minRemoved = difficulty.minRemoved;
+        let maxRemoved = difficulty.maxRemoved;
 
-            let randomRow, randomCol;
+        let notEmpty = [];
 
-            do {
-                randomRow = Math.floor(Math.random() * 9);
-                randomCol = Math.floor(Math.random() * 9);
-            } while(this.grid[randomRow][randomCol] === "");
+        for (let i = 0; i < this.size; i++) {
+            for (let j = 0; j < this.size; j++) {
+                notEmpty.push({i, j});
+            }
+        }
+
+        shuffleArray(notEmpty);
+
+        while (true) {
+
+            if (this.countEmpty() >= minRemoved) {
+                if (Math.random() > 0.75) {
+                    break;
+                }
+            }
+
+            const randomField = notEmpty.pop();
+
+            const randomRow = randomField.i;
+            const randomCol = randomField.j;
 
             let currentVal = this.grid[randomRow][randomCol];
             this.grid[randomRow][randomCol] = "";
@@ -210,11 +227,33 @@ class Sudoku {
             if (this.solutionCounter != 1) {
 
                 this.grid[randomRow][randomCol] = currentVal;
-                attempts--;
+                continue;
 
             }
 
+            if (this.countEmpty() >= maxRemoved) {
+                break;
+            }
+
         }
+
+        console.log(this.countEmpty())
+
+    }
+
+    countEmpty() {
+
+        let counter = 0;
+
+        for (let row of this.grid) {
+            for (let square of row) {
+                if (square === "") {
+                    counter++;
+                }
+            }
+        }
+
+        return counter;
 
     }
 
