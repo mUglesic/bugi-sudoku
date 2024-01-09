@@ -2,6 +2,7 @@
 const NUMS = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 const DIFF = {
+    DEBUG: {minRemoved: 1, maxRemoved: 7},
     EASY: {minRemoved: 40, maxRemoved: 45},
     MEDIUM: {minRemoved: 46, maxRemoved: 52},
     HARD: {minRemoved: 53, maxRemoved: 57}
@@ -39,6 +40,26 @@ class Sudoku {
 
     isFixed(i, j) {
         return this.fixedNums[i][j];
+    }
+
+    isWon() {
+
+        for (let i = 0; i < this.size; i++) {
+
+            for (let j = 0; j < this.size; j++) {
+
+                if (this.grid[i][j] !== this.solvedGrid[i][j]) {
+                    return false;
+                }
+
+            }
+
+        }
+
+        this.fixedNums = this.createFixed();
+
+        return true;
+
     }
 
     createGrid(size) {

@@ -4,6 +4,8 @@ let currentSelection = "";
 const SUDOKU_GRID = document.getElementById("sudoku");
 const BUTTONS = document.getElementsByClassName("numberButton");
 
+const CLICK_AUDIO = new Audio("/public/audio/switch29.ogg");
+
 const DIMX = 3;
 const DIMY = 3;
 
@@ -29,9 +31,13 @@ for (let i = 0; i < sudoku.size; i++) {
         SUDOKU_GRID.append(field);
 
         field.addEventListener("click", () => {
+            CLICK_AUDIO.play();
             sudoku.insertNumber(currentSelection, i, j);
             fieldValue.innerHTML = sudoku.grid[i][j];
             fieldValue.style = `color: ${sudoku.solvedGrid[i][j] == sudoku.grid[i][j] ? "black" : "red"}`;
+            if (sudoku.isWon()) {
+                wave();
+            }
         });
 
     }
@@ -44,7 +50,7 @@ function selectNum(n) {
 
 document.addEventListener("keydown", (e) => {
 
-    if (e.key === "Backspace" || e.key === " ") {
+    if (e.key === "Backspace" || e.key === " " || e.key === "0") {
         BUTTONS[BUTTONS.length - 1].click();
     }
     else if (["1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(e.key)) {
@@ -68,5 +74,22 @@ for (let btn of BUTTONS) {
         btn.classList.add("numberButtonSelected");
 
     });
+
+}
+
+function wave() {
+
+    SUDOKU_GRID.style = "border: none;";
+
+    setTimeout(() => {
+        SUDOKU_GRID.style = "";
+    }, 1800);
+
+    let i = 0;
+
+    for (let f of document.getElementsByClassName("sudokuField")) {
+        f.style = `animation: 1s ease-in-out ${i}ms wave;`;
+        i += 10;
+    }
 
 }
