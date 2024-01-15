@@ -8,9 +8,11 @@ const DIFF = {
     HARD: {minRemoved: 53, maxRemoved: 57}
 }
 
+const DIFF_MAP = [DIFF.EASY, DIFF.MEDIUM, DIFF.HARD];
+
 class Sudoku {
 
-    constructor(w, h) {
+    constructor(w, h, d) {
 
         this.xDim = w;
         this.yDim = h;
@@ -24,7 +26,7 @@ class Sudoku {
 
         this.solvedGrid = this.copyGrid();
 
-        this.removeNums(DIFF.HARD);
+        this.removeNums(DIFF_MAP[d]);
 
         this.fixedNums = this.createFixed();
 

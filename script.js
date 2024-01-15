@@ -9,36 +9,48 @@ const CLICK_AUDIO = new Audio("/public/audio/switch29.ogg");
 const DIMX = 3;
 const DIMY = 3;
 
-const sudoku = new Sudoku(DIMX, DIMY);
+let sudoku;
 
-for (let i = 0; i < sudoku.size; i++) {
+function newGame() {
 
-    for (let j = 0; j < sudoku.size; j++) {
+    while (SUDOKU_GRID.firstChild) {
+        SUDOKU_GRID.removeChild(SUDOKU_GRID.firstChild);
+    }
 
-        const field = document.createElement("div");
-        field.id = `field-${i}-${j}`
+    const diff = document.getElementById("difficulty").value;
 
-        const fieldValue = document.createElement("span");
-        fieldValue.innerHTML = sudoku.grid[i][j];
+    sudoku = new Sudoku(DIMX, DIMY, diff);
 
-        field.append(fieldValue);
+    for (let i = 0; i < sudoku.size; i++) {
 
-        field.classList.add("sudokuField");
-        if (j % 3 == 0) field.classList.add("sudokuFieldVerticalBorder");
-        if (i % 3 == 0) field.classList.add("sudokuFieldHorizontalBorder");
-        if (sudoku.isFixed(i, j)) field.classList.add("fixedField")
+        for (let j = 0; j < sudoku.size; j++) {
 
-        SUDOKU_GRID.append(field);
+            const field = document.createElement("div");
+            field.id = `field-${i}-${j}`
 
-        field.addEventListener("click", () => {
-            CLICK_AUDIO.play();
-            sudoku.insertNumber(currentSelection, i, j);
+            const fieldValue = document.createElement("span");
             fieldValue.innerHTML = sudoku.grid[i][j];
-            fieldValue.style = `color: ${sudoku.solvedGrid[i][j] == sudoku.grid[i][j] ? "black" : "red"}`;
-            if (sudoku.isWon()) {
-                wave();
-            }
-        });
+
+            field.append(fieldValue);
+
+            field.classList.add("sudokuField");
+            if (j % 3 == 0) field.classList.add("sudokuFieldVerticalBorder");
+            if (i % 3 == 0) field.classList.add("sudokuFieldHorizontalBorder");
+            if (sudoku.isFixed(i, j)) field.classList.add("fixedField")
+
+            SUDOKU_GRID.append(field);
+
+            field.addEventListener("click", () => {
+                CLICK_AUDIO.play();
+                sudoku.insertNumber(currentSelection, i, j);
+                fieldValue.innerHTML = sudoku.grid[i][j];
+                fieldValue.style = `color: ${sudoku.solvedGrid[i][j] == sudoku.grid[i][j] ? "black" : "red"}`;
+                if (sudoku.isWon()) {
+                    wave();
+                }
+            });
+
+        }
 
     }
 
@@ -57,6 +69,10 @@ document.addEventListener("keydown", (e) => {
         document.getElementById(`button-${e.key}`).click();
     }
     
+});
+
+document.getElementById("startButton").addEventListener("click", () => {
+    newGame();
 });
 
 for (let btn of BUTTONS) {

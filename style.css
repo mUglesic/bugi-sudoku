@@ -39,6 +39,29 @@ main {
 
 }
 
+button {
+
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    font-size: 1.5rem;
+
+    border: 2px var(--text-color) solid;
+    border-radius: 10px;
+
+    filter: drop-shadow(3px 3px 2px black);
+
+    transition: background-color 100ms ease, scale 100ms ease-in-out, border 150ms linear;
+
+}
+
+select {
+
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    font-size: 1.5rem;
+
+}
+
 .sudokuWrapper {
 
     height: 46rem;
@@ -123,6 +146,8 @@ main {
     gap: 2rem;
     justify-content: center;
 
+    margin-bottom: 2rem;
+
 }
 
 .numberButton {
@@ -157,6 +182,18 @@ main {
     border: 5px #c01a1a solid;
 
     scale: 1.1;
+
+}
+
+#options {
+
+    display: flex;
+
+    justify-content: center;
+    gap: 1rem;
+
+    font-size: 1.5rem;
+    color: var(--text-color);
 
 }
 
