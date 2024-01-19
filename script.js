@@ -44,7 +44,12 @@ function newGame() {
                 CLICK_AUDIO.play();
                 sudoku.insertNumber(currentSelection, i, j);
                 fieldValue.innerHTML = sudoku.grid[i][j];
-                fieldValue.style = `color: ${sudoku.solvedGrid[i][j] == sudoku.grid[i][j] ? "black" : "red"}`;
+                if (sudoku.solvedGrid[i][j] !== sudoku.grid[i][j]) {
+                    fieldValue.style = "color: red;";
+                }
+                else {
+                    fieldValue.style = "";
+                }
                 if (sudoku.isWon()) {
                     wave();
                 }

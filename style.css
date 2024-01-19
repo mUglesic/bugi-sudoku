@@ -12,7 +12,7 @@
     line-height: 1.4;
     font-weight: 400;
 
-    /* color-scheme: light dark; */
+    color-scheme: light dark;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -137,11 +137,14 @@ select {
 
     font-weight: 500;
 
+    color: var(--text-color);
+
 }
 
 .numberPicker {
 
     display: flex;
+    flex-wrap: wrap;
 
     gap: 2rem;
     justify-content: center;
@@ -200,4 +203,56 @@ select {
 @keyframes wave {
     0% {translate: 0px 0px}
     50% {translate: 0px -50px}
+}
+
+@media (prefers-color-scheme: dark) {
+
+    body {
+
+        background-color: #213549;
+        color: var(--bg-color);
+
+    }
+
+    .sudokuField {
+        background-color: var(--text-color);
+        border-color: var(--bg-color)
+    }
+
+    .sudokuField span {
+        color: var(--bg-color);
+    }
+
+    .fixedField {
+        color: var(--bg-color);
+    }
+
+    #options {
+        color: var(--bg-color);
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .sudokuWrapper {
+
+        height: 32rem;
+
+        font-size: 1rem;
+
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .sudokuWrapper {
+
+        height: 80vw;
+
+        font-size: 2vmin;
+
+    }
+
 }
