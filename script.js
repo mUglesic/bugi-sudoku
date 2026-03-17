@@ -4,7 +4,7 @@ let currentSelection = "";
 const SUDOKU_GRID = document.getElementById("sudoku");
 const BUTTONS = document.getElementsByClassName("numberButton");
 
-const CLICK_AUDIO = new Audio("/public/audio/switch29.ogg");
+const CLICK_AUDIO = new Audio("public/audio/switch29.ogg");
 
 const DIMX = 3;
 const DIMY = 3;
