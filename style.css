@@ -35,7 +35,7 @@ body {
 
 main {
 
-    width: min(100% - 3rem, 1280px);
+    width: min(100% - 1rem, 800px);
 
 }
 
@@ -64,7 +64,7 @@ select {
 
 .sudokuWrapper {
 
-    height: 46rem;
+    width: 100%;
     aspect-ratio: 1;
 
     margin: 2rem auto;
@@ -75,7 +75,7 @@ select {
 
 .sudokuGrid {
 
-    height: 100%;
+    width: 100%;
     aspect-ratio: 1;
 
     display: grid;
@@ -143,11 +143,13 @@ select {
 
 .numberPicker {
 
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    
+    grid-template-columns: repeat(5, 1fr);
 
-    gap: 2rem;
-    justify-content: center;
+    gap: .5em;
+    
+    justify-items: center;
 
     margin-bottom: 2rem;
 
@@ -155,14 +157,14 @@ select {
 
 .numberButton {
 
-    height: 4.5rem;
+    width: 3.5em;
     aspect-ratio: 1;
 
     padding: 0;
 
     background-color: var(--text-color);
     color: var(--bg-color);
-    font-size: 2.75em;
+    /* font-size: 2em; */
 
     border: 2px var(--text-color) solid;
     border-radius: 10px;
@@ -176,15 +178,21 @@ select {
 .numberButton:hover {
 
     background-color: #27415a;
-    scale: 1.1;
+    scale: 1.05;
+
+}
+
+.numberButton>span {
+    
+    font-size: 2.5em;
 
 }
 
 .numberButtonSelected {
 
-    border: 5px #c01a1a solid;
+    border: 2px #c01a1a solid;
 
-    scale: 1.1;
+    scale: 1.05;
 
 }
 
@@ -237,10 +245,20 @@ select {
 
     .sudokuWrapper {
 
-        height: 32rem;
-
         font-size: 1rem;
 
+    }
+
+    .numberButton {
+
+        width: 3em;
+
+    }
+
+    .numberButton>span {
+    
+        font-size: 2em;
+        
     }
 
 }
@@ -249,10 +267,20 @@ select {
 
     .sudokuWrapper {
 
-        height: 80vw;
-
         font-size: 2vmin;
 
+    }
+
+    .numberButton {
+
+        width: 2em;
+
+    }
+
+    .numberButton>span {
+    
+        font-size: 1.5em;
+        
     }
 
 }
