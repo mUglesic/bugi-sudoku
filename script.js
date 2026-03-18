@@ -50,7 +50,7 @@ function newGame() {
                 fieldValue.innerHTML = sudoku.grid[i][j];
 
                 if (sudoku.solvedGrid[i][j] !== sudoku.grid[i][j]) {
-                    fieldValue.style = "color: red;";
+                    fieldValue.style = "color: #A82323;";
                 }
                 else {
                     fieldValue.style = "";
@@ -92,7 +92,7 @@ for (let btn of BUTTONS) {
 
         const val = btn.textContent;
 
-        selectNum(val);
+        selectNum(val == "␡" ? "" : val);
 
         for (let b of BUTTONS) {
             b.classList.remove("numberButtonSelected");

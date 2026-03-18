@@ -1,8 +1,13 @@
 
 :root {
 
-    --bg-color: #faf9f6;
-    --text-color: #15222e;
+    /* https://colorhunt.co/palette/a82323feffd3bcd9a26d9e51 */
+
+    --bg-color: #FEFFD3;
+    --sudoku-bg-color: #BCD9A2;
+    --text-color: #6D9E51;
+
+    --the-shadow: drop-shadow(3px 3px 2px #575757);
 
 }
 
@@ -48,7 +53,7 @@ button {
     border: 2px var(--text-color) solid;
     border-radius: 10px;
 
-    filter: drop-shadow(3px 3px 2px black);
+    filter: var(--the-shadow);
 
     transition: background-color 100ms ease, scale 100ms ease-in-out, border 150ms linear;
 
@@ -84,7 +89,7 @@ select {
 
     border: 1px black solid;
 
-    filter: drop-shadow(2px 2px 2px black);
+    filter: var(--the-shadow);
 
 }
 
@@ -95,7 +100,7 @@ select {
     font-size: 3em;
     font-weight: 300;
 
-    background-color: var(--bg-color);
+    background-color: var(--sudoku-bg-color);
 
     border-right: 1px black solid;
     border-bottom: 1px black solid;
@@ -135,7 +140,7 @@ select {
 
 .fixedField {
 
-    font-weight: 500;
+    font-weight: 700;
 
     color: var(--text-color);
 
@@ -162,22 +167,22 @@ select {
 
     padding: 0;
 
-    background-color: var(--text-color);
-    color: var(--bg-color);
+    background-color: var(--sudoku-bg-color);
+    color: var(--text-color);
     /* font-size: 2em; */
 
     border: 2px var(--text-color) solid;
     border-radius: 10px;
 
-    filter: drop-shadow(3px 3px 2px black);
+    filter: var(--the-shadow);
 
-    transition: background-color 100ms ease, scale 100ms ease-in-out, border 150ms linear;
+    transition: filter 100ms ease, scale 100ms ease-in-out, border 150ms linear;
 
 }
 
 .numberButton:hover {
 
-    background-color: #27415a;
+    filter: var(--the-shadow) brightness(0.9);
     scale: 1.05;
 
 }
@@ -190,7 +195,7 @@ select {
 
 .numberButtonSelected {
 
-    border: 2px #c01a1a solid;
+    border: 2px #A82323 solid;
 
     scale: 1.05;
 
@@ -213,33 +218,41 @@ select {
     50% {translate: 0px -50px}
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
 
     body {
 
-        background-color: #213549;
+        background-color: #6D9E51;
         color: var(--bg-color);
 
     }
 
     .sudokuField {
+
         background-color: var(--text-color);
-        border-color: var(--bg-color)
+        border-color: #6D9E51;
+
     }
 
     .sudokuField span {
-        color: var(--bg-color);
+
+        color: #6D9E51;
+
     }
 
     .fixedField {
+
         color: var(--bg-color);
+
     }
 
     #options {
+
         color: var(--bg-color);
+
     }
 
-}
+} */
 
 @media (max-width: 800px) {
 
