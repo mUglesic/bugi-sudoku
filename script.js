@@ -4,7 +4,7 @@ let currentSelection = "";
 const SUDOKU_GRID = document.getElementById("sudoku");
 const BUTTONS = document.getElementsByClassName("numberButton");
 
-const CLICK_AUDIO = new Audio("public/audio/switch29.ogg");
+const CLICK_AUDIO = new Audio("public/audio/switch29_short.ogg");
 
 const DIMX = 3;
 const DIMY = 3;
@@ -41,9 +41,14 @@ function newGame() {
             SUDOKU_GRID.append(field);
 
             field.addEventListener("click", () => {
+
+                CLICK_AUDIO.pause();
+                CLICK_AUDIO.currentTime = 0;
                 CLICK_AUDIO.play();
+
                 sudoku.insertNumber(currentSelection, i, j);
                 fieldValue.innerHTML = sudoku.grid[i][j];
+
                 if (sudoku.solvedGrid[i][j] !== sudoku.grid[i][j]) {
                     fieldValue.style = "color: red;";
                 }
@@ -53,6 +58,7 @@ function newGame() {
                 if (sudoku.isWon()) {
                     wave();
                 }
+
             });
 
         }
@@ -84,7 +90,7 @@ for (let btn of BUTTONS) {
 
     btn.addEventListener("click", () => {
 
-        const val = btn.innerHTML;
+        const val = btn.textContent;
 
         selectNum(val);
 
