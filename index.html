@@ -34,19 +34,23 @@
             </div>
 
             <div id="options">
+                
+                <div>
+                    <label for="inputMode">Input mode: </label>
+                    <select id="inputMode" name="inputMode">
+                        <option value="0">FIELD FIRST</option>
+                        <option value="1">NUMBER FIRST</option>
+                    </select>
+                </div>
 
-                <label for="inputMode">Input mode: </label>
-                <select id="inputMode" name="inputMode">
-                    <option value="0">FIELD FIRST</option>
-                    <option value="1">NUMBER FIRST</option>
-                </select>
-
-                <label for="difficulty">Difficulty: </label>
-                <select id="difficulty" name="difficulty">
-                    <option value="0">EASY</option>
-                    <option value="1">MEDIUM</option>
-                    <option value="2" selected>HARD</option>
-                </select>
+                <div>
+                    <label for="difficulty">Difficulty: </label>
+                    <select id="difficulty" name="difficulty">
+                        <option value="0">EASY</option>
+                        <option value="1">MEDIUM</option>
+                        <option value="2" selected>HARD</option>
+                    </select>
+                </div>
 
                 <button id="startButton">START</button>
 
