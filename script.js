@@ -8,6 +8,7 @@ const DIMX = 3;
 const DIMY = 3;
 
 let sudoku;
+let fields = [];
 
 let numberSelection = "";
 let fieldSelection = [0, 0];
@@ -28,7 +29,8 @@ function newGame() {
         for (let j = 0; j < sudoku.size; j++) {
 
             const field = document.createElement("div");
-            field.id = `field-${i}-${j}`
+            field.id = `field-${i}-${j}`;
+            fields.push(field);
 
             const fieldValue = document.createElement("span");
             fieldValue.innerHTML = sudoku.grid[i][j];
@@ -72,6 +74,8 @@ function newGame() {
                     fieldSelection = [i, j];
                     field.classList.add("selected");
 
+                    paintNums(fieldValue.innerHTML);
+
                 }
 
             });
@@ -84,6 +88,30 @@ function newGame() {
 
 function selectNum(n) {
     numberSelection = n;
+}
+
+function paintNums(n) {
+
+    for (const f of fields) {
+
+        f.classList.remove("painted");
+
+    }
+
+    if (n != "") {
+
+        for (const f of fields) {
+
+            if (f.textContent == n) {
+
+                f.classList.add("painted");
+
+            }
+
+        }
+
+    }
+
 }
 
 document.addEventListener("keydown", (e) => {
@@ -126,6 +154,8 @@ for (let btn of BUTTONS) {
 
             sudoku.insertNumber(numberSelection, i, j);
             fieldValue.innerHTML = sudoku.grid[i][j];
+
+            paintNums(numberSelection);
 
             if (sudoku.solvedGrid[i][j] !== sudoku.grid[i][j]) {
                 fieldValue.style = "color: #A82323;";

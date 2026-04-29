@@ -127,6 +127,13 @@ select {
 
 }
 
+.sudokuField.painted {
+
+    color: #f49600;
+    filter: brightness(0.95);
+
+}
+
 .sudokuField span {
 
     position: absolute;
