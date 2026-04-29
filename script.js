@@ -1,6 +1,4 @@
 
-let currentSelection = "";
-
 const SUDOKU_GRID = document.getElementById("sudoku");
 const BUTTONS = document.getElementsByClassName("numberButton");
 
@@ -10,6 +8,10 @@ const DIMX = 3;
 const DIMY = 3;
 
 let sudoku;
+
+let numberSelection = "";
+let fieldSelection = [0, 0];
+let inputMode = 0;             // 0 - field first; 1 - number first
 
 function newGame() {
 
@@ -46,17 +48,30 @@ function newGame() {
                 CLICK_AUDIO.currentTime = 0;
                 CLICK_AUDIO.play();
 
-                sudoku.insertNumber(currentSelection, i, j);
-                fieldValue.innerHTML = sudoku.grid[i][j];
+                if (inputMode == 1) {
 
-                if (sudoku.solvedGrid[i][j] !== sudoku.grid[i][j]) {
-                    fieldValue.style = "color: #A82323;";
+                    sudoku.insertNumber(numberSelection, i, j);
+                    fieldValue.innerHTML = sudoku.grid[i][j];
+
+                    if (sudoku.solvedGrid[i][j] !== sudoku.grid[i][j]) {
+                        fieldValue.style = "color: #A82323;";
+                    }
+                    else {
+                        fieldValue.style = "";
+                    }
+
+                    if (sudoku.isWon()) {
+                        wave();
+                    }
+
                 }
                 else {
-                    fieldValue.style = "";
-                }
-                if (sudoku.isWon()) {
-                    wave();
+
+                    document.getElementById(`field-${fieldSelection[0]}-${fieldSelection[1]}`).classList.remove("selected");
+
+                    fieldSelection = [i, j];
+                    field.classList.add("selected");
+
                 }
 
             });
@@ -68,7 +83,7 @@ function newGame() {
 }
 
 function selectNum(n) {
-    currentSelection = n;
+    numberSelection = n;
 }
 
 document.addEventListener("keydown", (e) => {
@@ -82,6 +97,14 @@ document.addEventListener("keydown", (e) => {
     
 });
 
+document.getElementById("inputMode").addEventListener("change", (e) => {
+
+    document.getElementById(`field-${fieldSelection[0]}-${fieldSelection[1]}`).classList.remove("selected");
+
+    inputMode = e.target.value;
+
+});
+
 document.getElementById("startButton").addEventListener("click", () => {
     newGame();
 });
@@ -93,6 +116,29 @@ for (let btn of BUTTONS) {
         const val = btn.textContent;
 
         selectNum(val == "␡" ? "" : val);
+
+        if (inputMode == 0) {
+
+            let i = fieldSelection[0];
+            let j = fieldSelection[1];
+
+            let fieldValue = document.getElementById(`field-${i}-${j}`).firstChild;
+
+            sudoku.insertNumber(numberSelection, i, j);
+            fieldValue.innerHTML = sudoku.grid[i][j];
+
+            if (sudoku.solvedGrid[i][j] !== sudoku.grid[i][j]) {
+                fieldValue.style = "color: #A82323;";
+            }
+            else {
+                fieldValue.style = "";
+            }
+
+            if (sudoku.isWon()) {
+                wave();
+            }
+
+        }
 
         for (let b of BUTTONS) {
             b.classList.remove("numberButtonSelected");

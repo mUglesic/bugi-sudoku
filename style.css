@@ -121,6 +121,12 @@ select {
 
 }
 
+.sudokuField.selected {
+
+    filter: brightness(0.9);
+
+}
+
 .sudokuField span {
 
     position: absolute;

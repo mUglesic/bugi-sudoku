@@ -27,6 +27,7 @@ class Sudoku {
         this.solvedGrid = this.copyGrid();
 
         this.removeNums(DIFF_MAP[d]);
+        // this.removeNums(DIFF.DEBUG);
 
         this.fixedNums = this.createFixed();
 
